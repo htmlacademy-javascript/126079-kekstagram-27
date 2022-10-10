@@ -1,17 +1,16 @@
-function getRandomNumber (a, b) {
-  if (a < 0 || b < 0 || a > b) {
+const getRandomNumber = (min, max) => {
+  if (min < 0 || max < 0 || min === max) {
     return NaN;
   }
 
-  const min = Math.ceil(Math.min(a, b));
-  const max = Math.floor(Math.max(a, b));
-  const result = Math.random() * (max - min + 1) + min;
-  return Math.floor(result);
-}
+  if (min > max) {
+    [min, max] = [max, min];
+  }
 
-function getStringLength (string, length) {
-  return string.length <= length;
-}
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+const checkStringLength = (string, length) => string.length <= length;
 
 getRandomNumber(1, 10);
-getStringLength('', 150);
+checkStringLength('', 150);
