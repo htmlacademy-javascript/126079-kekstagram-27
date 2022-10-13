@@ -1,16 +1,5 @@
-const getRandomNumber = (min, max) => {
-  if (min < 0 || max < 0 || min === max) {
-    return NaN;
-  }
+import './util.js';
+import {createNewPhotoCards} from './data.js';
 
-  if (min > max) {
-    [min, max] = [max, min];
-  }
+createNewPhotoCards();
 
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
-
-const checkStringLength = (string, length) => string.length <= length;
-
-getRandomNumber(1, 10);
-checkStringLength('', 150);
