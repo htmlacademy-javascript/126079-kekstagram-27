@@ -50,7 +50,7 @@ const createComment = () => {
     name: NAME [getRandomNumber(0, NAME.length - 1)],
   };
 
-  commentIndex = commentIndex + 1;
+  commentIndex += 1;
 
   return comment;
 };
@@ -66,7 +66,7 @@ const createPhotoCard = () => {
     comments: createComments(),
   };
 
-  cardIndex = cardIndex + 1;
+  cardIndex += 1;
 
   return photoCard;
 };
