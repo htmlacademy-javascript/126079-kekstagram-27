@@ -1,5 +1,4 @@
-import './util.js';
 import {createNewPhotoCards} from './data.js';
+import {showPictures} from './picture.js';
 
-createNewPhotoCards();
-
+showPictures(createNewPhotoCards());
