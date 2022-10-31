@@ -35,14 +35,14 @@ const hiddenBigPicture = () => {
   document.removeEventListener('keydown', onEscKeydown);
 };
 
-function onEscKeydown(evt) {
+function onEscKeydown (evt) {
   if (evt.key === 'Escape') {
     evt.preventDefault();
     hiddenBigPicture();
   }
 }
 
-const cancelButtonClick = () => hiddenBigPicture();
+const onCancelButtonClick = () => hiddenBigPicture();
 
 const showPictureInfo = (info) => {
   bigPicture.querySelector('.big-picture__img img').src = info.url;
@@ -51,17 +51,20 @@ const showPictureInfo = (info) => {
   bigPicture.querySelector('.social__caption').src = info.url;
 };
 
+const addListeners = () => {
+  cancelButton.addEventListener('click', onCancelButtonClick);
+  document.addEventListener('keydown', onEscKeydown);
+};
+
 const showBigPicture = (info) => {
   bigPicture.classList.remove('hidden');
   body.classList.add('modal-open');
   commentsLoader.classList.add('hidden');
   commentCount.classList.add('hidden');
-  document.addEventListener('keydown', onEscKeydown);
 
   showPictureInfo(info);
   showComments(info.comments);
+  addListeners();
 };
-
-cancelButton.addEventListener('click', cancelButtonClick);
 
 export {showBigPicture};

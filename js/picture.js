@@ -4,8 +4,7 @@ const pictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 
-const createPicture = (info) => {
-  const {url, description, comments, likes} = info;
+const createPicture = ({url, description, comments, likes}) => {
   const picture = pictureTemplate.cloneNode(true);
 
   picture.querySelector('.picture__img').src = url;
@@ -14,7 +13,7 @@ const createPicture = (info) => {
   picture.querySelector('.picture__likes').textContent = likes;
 
   picture.addEventListener('click', () => {
-    showBigPicture(info);
+    showBigPicture({url, description, comments, likes});
   });
 
   return picture;
@@ -23,13 +22,10 @@ const createPicture = (info) => {
 const container = document.querySelector('.pictures');
 
 const showPictures = (pictures) => {
-  const fragment = document.createDocumentFragment();
   pictures.forEach((picture) => {
     const pictureElement = createPicture(picture);
-    fragment.append(pictureElement);
+    container.append(pictureElement);
   });
-
-  container.append(fragment);
 };
 
 export {showPictures};
