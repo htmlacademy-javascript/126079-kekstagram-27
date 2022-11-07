@@ -55,7 +55,7 @@ const createComment = () => {
   return comment;
 };
 
-const createComments = () => Array.from({length: getRandomNumber(1, 6)}, createComment);
+const createComments = () => Array.from({length: getRandomNumber(1, 20)}, createComment);
 
 const createPhotoCard = () => {
   const photoCard = {

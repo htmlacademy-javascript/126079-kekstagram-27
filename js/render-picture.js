@@ -1,4 +1,7 @@
+import {createNewPhotoCards} from './data.js';
 import {showBigPicture} from './big-picture.js';
+
+const data = createNewPhotoCards();
 
 const pictureTemplate = document.querySelector('#picture')
   .content
@@ -21,11 +24,11 @@ const createPicture = ({url, description, comments, likes}) => {
 
 const container = document.querySelector('.pictures');
 
-const showPictures = (pictures) => {
-  pictures.forEach((picture) => {
+const renderPicture = () => {
+  data.forEach((picture) => {
     const pictureElement = createPicture(picture);
     container.append(pictureElement);
   });
 };
 
-export {showPictures};
+export {renderPicture};
