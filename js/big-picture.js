@@ -31,7 +31,7 @@ const showComments = (comments) => {
   commentList.append(fragment);
 };
 
-const hiddenBigPicture = () => {
+const hideBigPicture = () => {
   bigPicture.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onEscKeydown);
@@ -40,11 +40,11 @@ const hiddenBigPicture = () => {
 function onEscKeydown (evt) {
   if (isEscapeKey) {
     evt.preventDefault();
-    hiddenBigPicture();
+    hideBigPicture();
   }
 }
 
-const onCancelButtonClick = () => hiddenBigPicture();
+const onCancelButtonClick = () => hideBigPicture();
 
 const showPictureInfo = (info) => {
   bigPicture.querySelector('.big-picture__img img').src = info.url;

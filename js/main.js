@@ -1,7 +1,7 @@
-import {createNewPhotoCards} from './data.js';
-import {showPictures} from './picture.js';
-import './form.js';
 
-showPictures(createNewPhotoCards());
+import {renderPicture} from './render-picture.js';
+import {addAddFormAction} from './form.js';
 
+renderPicture();
+addAddFormAction();
 
