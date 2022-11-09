@@ -1,5 +1,6 @@
 import {isEscapeKey} from './util.js';
 import {addValidator, pristineReset, pristineValidate} from './form-validate.js';
+//import {resetFilter} from './picture-effects.js';
 
 const form = document.querySelector('.img-upload__form');
 const overlay = document.querySelector('.img-upload__overlay');
@@ -19,6 +20,7 @@ const showModal = () => {
 const hideModal = () => {
   form.reset();
   pristineReset();
+  //resetFilter();
   overlay.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onEscKeydown);
