@@ -12,49 +12,48 @@ const pristine = new Pristine (form, {
 
 const isValidComment = (comment) => comment.length <= 140;
 
-const isValidHashtag = (tag) => HASHTAG_SYMBOLS.test(tag);
+const createHashtagArray = (value) => value.split(' ');
 
-const isValidCount = (tags) => tags.length <= 5;
+const isValidHashtag = (value) => {
+  if (!value) {
+    return true;
+  }
 
-const isUniqueTags = (tags) => {
-  const tagsToLowerCase = tags.map((tag) => tag.toLowerCase());
-  return tagsToLowerCase.length === new Set(tagsToLowerCase).size;
+  const hashtag = createHashtagArray(value);
+
+  return hashtag.every((test) => HASHTAG_SYMBOLS.test(test));
 };
 
-const validateTags = (value) => {
-  const tags = value
-    .trim()
-    .split(' ')
-    .filter((tag) => tag.trim().length);
-  return isValidCount(tags) && isUniqueTags(tags) && tags.every(isValidHashtag);
+const isValidCount = (value) => {
+  const hashtag = createHashtagArray(value);
+
+  return hashtag.length <= 5;
+};
+
+const isUniqueHashtags = (value) => {
+  const hashtag = createHashtagArray(value);
+  const uniqHashtag = new Set(hashtag);
+
+  return uniqHashtag.size === hashtag.length;
 };
 
 const addValidator = () => {
-  /* pristine.addValidator(
+  pristine.addValidator(
     hashtagField,
     isValidHashtag,
-    //validateTags,
-    '1. Хэштег начинается с # и должен включать минимум 1 символ; 2. Максимальная длина одного хэштега – 20 символов; 3. Строка после решётки должна состоять из букв и чисел, хэштег не может содержать пробелы, спецсимволы, символы пунктуации, эмодзи и т. д.',
+    'Хэштег должен начинаться с "#", содержать буквы и цифры (не более 20 символов, включая #)',
   );
 
   pristine.addValidator(
     hashtagField,
-    isUniqueTags,
-    //validateTags,
+    isUniqueHashtags,
     'Хэштеги не должны повторяться',
   );
 
   pristine.addValidator(
     hashtagField,
     isValidCount,
-    //validateTags,
     'Нельзя указать больше пяти хэштегов',
-  ); */
-
-  pristine.addValidator(
-    hashtagField,
-    validateTags,
-    'Введенный хэштег некорректен',
   );
 
   pristine.addValidator(
