@@ -1,10 +1,9 @@
 
-import {renderPicture} from './render-picture.js';
-import {addAddFormAction, setUserFormSubmit} from './form.js';
-//import {getData} from './api.js';
+import {getPictureList} from './render-picture.js';
+import {addAddFormAction, resetUploadForm} from './form.js';
 
-renderPicture();
 addAddFormAction();
-//getData();
-setUserFormSubmit();
+resetUploadForm();
+getPictureList();
+
 
