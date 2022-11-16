@@ -26,7 +26,7 @@ const closeModal = () => {
   removeEventListener();
 };
 
-const onDocumentKeydown = (evt) => {
+const onEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeModal();
@@ -71,13 +71,13 @@ const onCommentLoaderBtnClick = (evt) => {
 };
 
 function removeEventListener() {
-  document.removeEventListener('keydown', onDocumentKeydown);
+  document.removeEventListener('keydown', onEscKeydown);
   closeButton.removeEventListener('click', onCloseButtonClick);
   socialCommentsLoader.removeEventListener('click', onCommentLoaderBtnClick);
 }
 
 const addModalListeners = () => {
-  document.addEventListener('keydown', onDocumentKeydown);
+  document.addEventListener('keydown', onEscKeydown);
   closeButton.addEventListener('click', onCloseButtonClick);
   socialCommentsLoader.addEventListener('click', onCommentLoaderBtnClick);
 };

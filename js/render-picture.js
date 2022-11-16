@@ -1,34 +1,46 @@
-import {createNewPhotoCards} from './data.js';
 import {showBigPicture} from './big-picture.js';
+import {showErrorMessage} from './messages.js';
+import {getData} from './api.js';
 
-const data = createNewPhotoCards();
+const picturesContainer = document.querySelector('.pictures');
+const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
-const pictureTemplate = document.querySelector('#picture')
-  .content
-  .querySelector('.picture');
-
-const createPicture = ({url, description, comments, likes}) => {
-  const picture = pictureTemplate.cloneNode(true);
-
-  picture.querySelector('.picture__img').src = url;
-  picture.querySelector('.picture__img').alt = description;
-  picture.querySelector('.picture__comments').textContent = comments.length;
-  picture.querySelector('.picture__likes').textContent = likes;
-
-  picture.addEventListener('click', () => {
-    showBigPicture({url, description, comments, likes});
-  });
-
-  return picture;
+const removeOLdPictureList = () => {
+  picturesContainer.querySelectorAll('.picture').forEach((item) => item.remove());
 };
 
-const container = document.querySelector('.pictures');
+const createPictureList = (pictureData) => {
+  const pictureListFragment = document.createDocumentFragment();
+  removeOLdPictureList();
 
-const renderPicture = () => {
-  data.forEach((picture) => {
-    const pictureElement = createPicture(picture);
-    container.append(pictureElement);
+  pictureData.forEach(({id, description, url, likes, comments}) => {
+    const picture = pictureTemplate.cloneNode(true);
+
+    picture.href = `#${id}`;
+    picture.querySelector('.picture__img').src = url;
+    picture.querySelector('.picture__img').alt = description;
+    picture.querySelector('.picture__comments').textContent = comments.length;
+    picture.querySelector('.picture__likes').textContent = likes;
+
+    pictureListFragment.append(picture);
+
+    picture.addEventListener('click', () => {
+      showBigPicture({url, description, comments, likes});
+    });
   });
+
+  picturesContainer.append(pictureListFragment);
 };
 
-export {renderPicture};
+const getPictureList = () => {
+  getData()
+    .then((data) => {
+      createPictureList(data);
+    })
+    .catch(() => {
+      showErrorMessage('Фотографии отсутствуют...');
+    });
+};
+
+export {getPictureList};
+
