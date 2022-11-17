@@ -3,13 +3,16 @@ import {showErrorMessage} from './messages.js';
 import {getData} from './api.js';
 
 const picturesContainer = document.querySelector('.pictures');
-const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
+const pictureTemplate = document.querySelector('#picture')
+  .content
+  .querySelector('.picture');
 
 const removeOLdPictureList = () => {
   picturesContainer.querySelectorAll('.picture').forEach((item) => item.remove());
 };
 
 const createPictureList = (pictureData) => {
+
   const pictureListFragment = document.createDocumentFragment();
   removeOLdPictureList();
 
@@ -19,8 +22,8 @@ const createPictureList = (pictureData) => {
     picture.href = `#${id}`;
     picture.querySelector('.picture__img').src = url;
     picture.querySelector('.picture__img').alt = description;
-    picture.querySelector('.picture__comments').textContent = comments.length;
-    picture.querySelector('.picture__likes').textContent = likes;
+    picture.querySelector('.picture__comments').textContent = comments.length.toString();
+    picture.querySelector('.picture__likes').textContent = likes.toString();
 
     pictureListFragment.append(picture);
 
@@ -42,5 +45,5 @@ const getPictureList = () => {
     });
 };
 
-export {getPictureList};
+export {getPictureList, createPictureList};
 

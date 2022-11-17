@@ -4,7 +4,7 @@ import {activateScale, deactivateScale} from './scale-image.js';
 import {changeEffect, resetFilter} from './effects-image.js';
 import {sendData} from './api.js';
 import {showErrorMessage, showSuccessMessage} from './messages.js';
-//import {resetFileInput} from './upload-file.js';
+import {resetFileInput} from './upload-file.js';
 
 const form = document.querySelector('.img-upload__form');
 const overlay = document.querySelector('.img-upload__overlay');
@@ -68,9 +68,14 @@ const unblockSubmitButton = () => {
   submitButton.textContent = 'Опубликовать';
 };
 
-form.addEventListener('submit', (evt) => {
-  evt.preventDefault();
+const resetUploadForm = () => {
+  form.reset();
+  onCancelButtonClick();
+  resetFileInput();
+};
 
+const onSubmitForm = (evt) => {
+  evt.preventDefault();
   if (pristineValidate()) {
     blockSubmitButton();
     sendData(
@@ -87,18 +92,6 @@ form.addEventListener('submit', (evt) => {
       new FormData(form),
     );
   }
-});
-
-function resetUploadForm() {
-  form.reset();
-  onCancelButtonClick();
-  //resetFileInput();
-}
-
-const onSubmitForm = (evt) => {
-  if (!pristineValidate()) {
-    evt.preventDefault();
-  }
 };
 
 const addAddFormAction = () => {
@@ -107,5 +100,5 @@ const addAddFormAction = () => {
   form.addEventListener('submit', onSubmitForm);
 };
 
-export {onFileInputChange, resetUploadForm, showModal, addAddFormAction};
+export {onFileInputChange, showModal, addAddFormAction};
 

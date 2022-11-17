@@ -5,16 +5,15 @@ const ENDINGS = ['комментария', 'комментариев', 'комм
 
 const closeButton = document.querySelector('.big-picture__cancel');
 const bigPicture = document.querySelector('.big-picture');
-
 const bigPictureImage = document.querySelector('.big-picture__img img');
-const likesCount = bigPicture.querySelector('.likes-count');
 
-const commentsList = bigPicture.querySelector('.social__comments');
-const commentItem = bigPicture.querySelector('.social__comment');
+const likesCount = document.querySelector('.likes-count');
+const commentsList = document.querySelector('.social__comments');
+const commentItem = document.querySelector('.social__comment');
 
-const pictureDescription = bigPicture.querySelector('.social__caption');
-const socialCommentCount = bigPicture.querySelector('.social__comment-count');
-const socialCommentsLoader = bigPicture.querySelector('.social__comments-loader');
+const pictureDescription = document.querySelector('.social__caption');
+const socialCommentCount = document.querySelector('.social__comment-count');
+const socialCommentsLoader = document.querySelector('.social__comments-loader');
 
 let displayedComments = 0;
 let comments;
@@ -103,4 +102,4 @@ const showBigPicture = (picture) => {
   addModalListeners();
 };
 
-export {showBigPicture};
+export {showBigPicture, closeModal};
