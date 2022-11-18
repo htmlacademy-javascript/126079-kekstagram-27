@@ -35,8 +35,6 @@ const deactivateScale = () => {
   image.style.transform = 'scale(1)';
 };
 
-//scaleInput.value = SCALE_RANGE.MAX;
-
 export {activateScale, deactivateScale};
 
 

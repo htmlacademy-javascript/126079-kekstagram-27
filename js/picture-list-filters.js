@@ -3,9 +3,6 @@ import {createPictureList} from './render-picture.js';
 
 const imageFiltersForm = document.querySelector('.img-filters__form');
 const imageFiltersButton = document.querySelectorAll('.img-filters__button');
-const imageFilters = document.querySelector('.img-filters');
-
-imageFilters.classList.remove('img-filters--inactive');
 
 const toggleActiveButton = (button) => {
   imageFiltersButton.forEach((el) => {

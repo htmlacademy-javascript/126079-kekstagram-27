@@ -1,7 +1,9 @@
-import {showBigPicture} from './big-picture.js';
+import {showBigPicture, closeModal} from './big-picture.js';
 import {showErrorMessage} from './messages.js';
 import {getData} from './api.js';
+import {initFilterButtons} from './picture-list-filters.js';
 
+const imageFilters = document.querySelector('.img-filters');
 const picturesContainer = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture')
   .content
@@ -36,13 +38,13 @@ const createPictureList = (pictureData) => {
 };
 
 const getPictureList = () => {
-  getData()
-    .then((data) => {
-      createPictureList(data);
-    })
-    .catch(() => {
-      showErrorMessage('Фотографии отсутствуют...');
-    });
+  getData((data) => {
+    createPictureList(data);
+    initFilterButtons(data);
+    closeModal();
+    imageFilters.classList.remove('img-filters--inactive');
+
+  }, () => showErrorMessage('Фотографии отсутствуют...'));
 };
 
 export {getPictureList, createPictureList};
