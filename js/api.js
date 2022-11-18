@@ -1,28 +1,16 @@
-const url = {
-  POST: 'https://27.javascript.pages.academy/kekstagram',
-  GET: 'https://27.javascript.pages.academy/kekstagram/data',
+const getData = (onSuccess) => {
+  fetch('https://27.javascript.pages.academy/kekstagram/data')
+    .then((response) => response.json())
+    .then((images) => {
+      onSuccess(images);
+    });
 };
 
-async function getData() {
-  const response = await fetch(url.GET,
-    {
-      method: 'GET',
-      credentials: 'same-origin',
-    },
-  );
-
-  if (response.ok) {
-    return await response.json();
-  }
-
-  throw new Error(`Ошибка: ${response.status} - ${response.statusText} `);
-}
-
-function sendData(onSuccess, onFail, body) {
-  fetch(url.POST,
+const sendData = (onSuccess, onFail, body) => {
+  fetch(
+    'https://27.javascript.pages.academy/kekstagram',
     {
       method: 'POST',
-      'Content-Type': 'multipart/form-data',
       body,
     },
   )
@@ -30,10 +18,12 @@ function sendData(onSuccess, onFail, body) {
       if (response.ok) {
         onSuccess();
       } else {
-        onFail();
+        onFail('Не удалось опубликовать изображение. Попробуйте ещё раз');
       }
     })
-    .catch(() => onFail());
-}
+    .catch(() => {
+      onFail('Не удалось опубликовать изображение. Попробуйте ещё раз');
+    });
+};
 
 export {getData, sendData};

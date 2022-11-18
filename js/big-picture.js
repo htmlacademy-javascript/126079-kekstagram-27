@@ -1,4 +1,4 @@
-import {isEscapeKey, wordToNumber} from './util.js';
+import {isEscapeKey, createWordToNumber} from './util.js';
 
 const PART_OF_COMMENTS = 5;
 const ENDINGS = ['комментария', 'комментариев', 'комментариев'];
@@ -60,7 +60,7 @@ const showComments = (from, to) => {
   displayedComments = Math.min(to, comments.length);
   renderComments(comments.slice(from, displayedComments));
 
-  socialCommentCount.textContent = `${displayedComments} из ${commentsLength} ${wordToNumber(commentsLength, ENDINGS)}`;
+  socialCommentCount.textContent = `${displayedComments} из ${commentsLength} ${createWordToNumber(commentsLength, ENDINGS)}`;
   updateCommentLoaderBtn();
 };
 

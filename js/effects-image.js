@@ -55,12 +55,15 @@ const createSlider = () => {
   });
 };
 
+const resetFilter = () => {
+  image.style.filter = null;
+  image.className = '';
+  sliderElementField.classList.add('hidden');
+};
+
 const changeEffect = ({target}) => {
   if (target.value === 'none') {
-    sliderElementField.noUiSlider.destroy();
-    image.style.filter = null;
-    image.className = '';
-    sliderElementField.classList.add('hidden');
+    resetFilter();
     return;
   }
 
@@ -91,13 +94,6 @@ const changeEffect = ({target}) => {
     effectLevel.value = sliderElementField.noUiSlider.get();
     image.style.filter = `${effect}(${effectLevel.value}${unit})`;
   });
-};
-
-const resetFilter = () => {
-  //sliderElementField.noUiSlider.destroy();
-  image.style.filter = null;
-  image.className = '';
-  sliderElementField.classList.add('hidden');
 };
 
 export {changeEffect, resetFilter};
