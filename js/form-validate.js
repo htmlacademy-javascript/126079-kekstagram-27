@@ -1,8 +1,10 @@
+const HASHTAG_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
+const MAX_COMMENTS_LENGTH = 140;
+const MAX_HASHTAG_COUNT = 5;
+
 const form = document.querySelector('.img-upload__form');
 const commentField = document.querySelector('.text__description');
 const hashtagField = document.querySelector('.text__hashtags');
-
-const HASHTAG_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
 
 const pristine = new Pristine (form, {
   classTo: 'img-upload__field-wrapper',
@@ -10,7 +12,7 @@ const pristine = new Pristine (form, {
   errorTextClass: 'img-upload__field-wrapper__error',
 });
 
-const isValidComment = (comment) => comment.length <= 140;
+const isValidComment = (comment) => comment.length <= MAX_COMMENTS_LENGTH;
 
 const createHashtagArray = (value) => value.split(' ');
 
@@ -27,7 +29,7 @@ const isValidHashtag = (value) => {
 const isValidCount = (value) => {
   const hashtag = createHashtagArray(value);
 
-  return hashtag.length <= 5;
+  return hashtag.length <= MAX_HASHTAG_COUNT;
 };
 
 const isUniqueHashtags = (value) => {

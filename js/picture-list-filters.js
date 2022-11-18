@@ -1,6 +1,8 @@
 import {createRandomArrayFromRange, debounce} from './util.js';
 import {createPictureList} from './render-picture.js';
 
+const DEBOUNCE_DELAY = 500;
+
 const imageFiltersForm = document.querySelector('.img-filters__form');
 const imageFiltersButton = document.querySelectorAll('.img-filters__button');
 
@@ -28,7 +30,7 @@ const applyFilter = (id, imagesArray) => {
   createPictureList(newImageArray);
 };
 
-const applyTimeOut = debounce(applyFilter);
+const applyTimeOut = debounce(applyFilter, DEBOUNCE_DELAY);
 
 const initFilterButtons = (imagesArray) => {
   imageFiltersForm.addEventListener('click', (evt) => {

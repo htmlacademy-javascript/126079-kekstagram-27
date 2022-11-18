@@ -24,12 +24,12 @@ const onWindowClick = (evt) => {
   }
 };
 
-const addEventListener = () => {
+const addEventListeners = () => {
   window.addEventListener('click', onWindowClick);
   document.addEventListener('keydown', onResultEscPress);
 };
 
-const removeEventListener = () => {
+const removeEventListeners = () => {
   window.removeEventListener('click', onWindowClick);
   document.removeEventListener('keydown', onResultEscPress);
 };
@@ -39,29 +39,28 @@ const showSuccessMessage = () => {
   const successButton = successMessage.querySelector('.success__button');
 
   document.body.append(successMessage);
-  addEventListener();
+  addEventListeners();
 
   successButton.addEventListener('click', onResultCloseClick);
   successButton.addEventListener('click', () => {
     successMessage.remove();
     successButton.removeEventListener('click', onResultCloseClick);
-    removeEventListener();
+    removeEventListeners();
   });
 };
 
-const showErrorMessage = (message) => {
+const showErrorMessage = () => {
   const errorMessage = errorMessageTemplate.cloneNode(true);
-  const errorButton = document.querySelector('.error__button');
+  const errorButton = errorMessage.querySelector('.error__button');
 
-  document.querySelector('.error__title').textContent = message;
   document.body.append(errorMessage);
-  addEventListener();
+  addEventListeners();
 
   errorButton.addEventListener('click', onResultCloseClick);
   errorButton.addEventListener('click', () => {
     errorMessage.remove();
     errorButton.removeEventListener('click', onResultCloseClick);
-    removeEventListener();
+    removeEventListeners();
   });
 };
 

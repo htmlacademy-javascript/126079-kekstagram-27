@@ -15,7 +15,7 @@ const fileField = document.querySelector('#upload-file');
 const hashtagField = document.querySelector('.text__hashtags');
 const commentField = document.querySelector('.text__description');
 
-const effectsListElement = document.querySelector('.effects__list');
+const effectsList = document.querySelector('.effects__list');
 const body = document.querySelector('body');
 
 const submitButton = document.querySelector('.img-upload__submit');
@@ -25,7 +25,7 @@ const showModal = () => {
   body.classList.add('modal-open');
   document.addEventListener('keydown', onEscKeydown);
   cancelButton.addEventListener('click', onCancelButtonClick);
-  effectsListElement.addEventListener('change', changeEffect);
+  effectsList.addEventListener('change', changeEffect);
   activateScale();
 };
 
@@ -37,7 +37,7 @@ const hideModal = () => {
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onEscKeydown);
   cancelButton.removeEventListener('click', onCancelButtonClick);
-  effectsListElement.removeEventListener('change', changeEffect);
+  effectsList.removeEventListener('change', changeEffect);
   deactivateScale();
 };
 
