@@ -4,6 +4,8 @@ const SCALE_RANGE = {
   MAX: '100%',
 };
 
+const PERCENT_DIVIDER = 100;
+
 const image = document.querySelector('.img-upload__preview img');
 const scaleInput = document.querySelector('.scale__control--value');
 
@@ -13,14 +15,14 @@ const biggerScaleButton = document.querySelector('.scale__control--bigger');
 const onBiggerButtonClick = () => {
   if (scaleInput.value !== SCALE_RANGE.MAX) {
     scaleInput.value = `${Number(scaleInput.value.replace('%', '')) + SCALE_STEP}%`;
-    image.style.transform = `scale(${Number(scaleInput.value.replace('%', '')) / 100})`;
+    image.style.transform = `scale(${Number(scaleInput.value.replace('%', '')) / PERCENT_DIVIDER})`;
   }
 };
 
 const onSmallerButtonClick = () => {
   if (scaleInput.value !== SCALE_RANGE.MIN) {
     scaleInput.value = `${Number(scaleInput.value.replace('%', '')) - SCALE_STEP}%`;
-    image.style.transform = `scale(${Number(scaleInput.value.replace('%', '')) / 100})`;
+    image.style.transform = `scale(${Number(scaleInput.value.replace('%', '')) / PERCENT_DIVIDER})`;
   }
 };
 

@@ -1,11 +1,11 @@
 import {showModal} from './form.js';
 
+const VALID_IMAGE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
+const DEFAULT_PREVIEW_IMAGE = 'img/upload-default-image.jpg';
+
 const imageInput = document.querySelector('.img-upload__input');
 const imagePreview = document.querySelector('.img-upload__preview img');
 const effectsPreview = document.querySelectorAll('.effects__preview');
-
-const VALID_IMAGE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
-const DEFAULT_PREVIEW_IMAGE = 'img/upload-default-image.jpg';
 
 imageInput.addEventListener('change', (evt) => {
   const file = evt.target.files[0];
